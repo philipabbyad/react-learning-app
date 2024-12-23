@@ -4,6 +4,7 @@ A simple React application designed as a learning tool to help you understand fu
 
 ## Table of Contents
 
+- [Overview](#overview)
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -17,6 +18,11 @@ A simple React application designed as a learning tool to help you understand fu
 - [Contributing](#contributing)
 - [Acknowledgments](#acknowledgments)
 - [License](#license)
+
+## Overview
+
+This refactored version uses **React Router** to keep everything in a single-page web app. Instead of multiple HTML files, users navigate between routes (`/`, `/todo`, `/searchable`) to access different features and demonstrations. This approach is more aligned with modern React best practices and provides a more seamless user experience.
+
 
 ## Features
 
@@ -32,6 +38,8 @@ A simple React application designed as a learning tool to help you understand fu
 - **Node.js** (version 14 or above)  
   [Download Node.js](https://nodejs.org/)
 - **npm** (comes with Node.js) or [Yarn](https://classic.yarnpkg.com/en/)
+- **React Router** (`react-router-dom`) is needed for routing in this app.
+
 
 ## Installation
 
@@ -51,6 +59,16 @@ or
 ```bash
 npm install
 ```
+
+Install `react-router-dom` manually, if needed:
+```bash
+npm install react-router-dom
+```
+or
+```bash
+yarn add react-router-dom
+```
+
 ## Running the Application
 
 Install dependencies:
@@ -64,7 +82,13 @@ or
 yarn start
 ```
 
-Open http://localhost:3000 in your browser to view the application. Any changes you make to the source code will automatically refresh the page.
+Open http://localhost:3000 in your browser. You’ll see a navigation bar with links to:
+
+- **Home** (Shows HelloWorld, Greeting, Counter)
+- **To-Do List**
+- **Searchable List**
+
+When you click a link, the app updates the URL and displays the corresponding component, without fully reloading the page.
 
 ## Testing
 
@@ -97,39 +121,51 @@ or
 yarn build
 ```
 
-This command creates a production-ready build in the build directory. The output includes minified and optimized JavaScript and other assets, ready for deployment.
+This command creates a production build in the `build` folder, which contains optimized files ready to be deployed to your hosting platform. This includes the entire single-page application with client-side routing.
 
 ## Project Structure
 
 ```arduino
 my-react-learning-app/
-├─ src/
-│  ├─ components/
-│  │  ├─ HelloWorld.js
-│  │  ├─ Greeting.js
-│  │  └─ Counter.js
-│  ├─ App.js
-│  ├─ App.test.js
-│  ├─ index.js
-│  ├─ setupTests.js
-│  └─ __tests__/
-│     ├─ Greeting.test.js
-│     └─ Counter.test.js
 ├─ public/
 │  ├─ index.html
 │  ├─ favicon.ico
 │  └─ styles.css
+├─ src/
+│  ├─ components/
+│  │  ├─ HelloWorld.js
+│  │  ├─ Greeting.js
+│  │  ├─ Counter.js
+│  │  ├─ TodoList.js
+│  │  └─ SearchableList.js 
+│  ├─ pages/
+│  │  ├─ Home.js
+│  │  ├─ TodoPage.js
+│  │  └─ SearchablePage.js
+│  ├─ App.js 
+│  ├─ index.js 
+│  ├─ App.test.js
+│  ├─ setupTests.js
+│  └─ __tests__/
+│     ├─ Greeting.test.js
+│     ├─ Counter.test.js
+│     ├─ TodoList.test.js
+│     └─ SearchableList.test.js
+├─ jest.config.js
 ├─ package.json
-├─ README.md
-└─ jest.config.js
+└─ README.md
+
 ```
 
 ## Key Concepts Demonstrated
 
+- **Single-Page Application** structure using **React Router**
 - **JSX**: Learn how to write markup directly in JavaScript files.
 - **Functional Components**: Understand the simplest way to create components in React.
 - **Props**: Explore how to pass data into components to make them reusable and flexible.
 - **State (useState Hook)**: Discover how to manage dynamic data within components.
+- **Conditional Rendering** and **Filtering** (To-Do List, Searchable List).
+- **Client-Side Navigation** without full page reloads.
 - **Testing**: Ensure quality and maintainability by using Jest and React Testing Library.
 
 ## Browser Compatability
@@ -145,6 +181,8 @@ This application is compatible with all major modern web browsers, including:
 
 - **Port Already in Use**: If `localhost:3000` is already in use, you may be prompted to run the app on another port. Confirm by pressing `y` or kill the process using that port and restart.
 - **Module Not Found Errors**: If you encounter issues related to missing modules, ensure that you’ve run `npm install` or `yarn install` before starting the app.
+- **Cannot find module 'react-router-dom'**: Ensure `react-router-dom` is installed and listed in your dependencies.
+- **Broken links or 404 on refresh**: For local development, Create React App handles routing gracefully. For production, ensure your host is configured to serve the `index.html` on all routes (this is standard for SPAs).
 - **Clearing Cache**: If the application behaves unexpectedly, try clearing your browser cache or running `npm start` again.
 
 ## Contributing

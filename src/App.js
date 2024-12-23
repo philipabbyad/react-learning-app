@@ -1,43 +1,53 @@
 import React from 'react';
-// Import our custom components that we created to demonstrate various React concepts
-import HelloWorld from './components/HelloWorld';
-import Greeting from './components/Greeting';
-import Counter from './components/Counter';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
+import Home from './pages/Home';
+import TodoPage from './pages/TodoPage';
+import SearchablePage from './pages/SearchablePage';
+
+/**
+ * App.js
+ *
+ * The root of our single-page application. We use React Router to define
+ * multiple routes for Home, To-Do List, and Searchable List.
+ */
 function App() {
-  // App is the root component of our application.
-  // It brings together multiple child components to demonstrate how React works.
   return (
-    <div style={{ fontFamily: 'Arial, sans-serif', margin: '20px' }}>
-      {/* A main heading for our application */}
-      <h1>React Learning Tool</h1>
-      <hr />
+    <BrowserRouter>
+      {/*
+        Simple navbar with Link components to navigate between routes.
+        Note that <Link> from react-router-dom updates the URL
+        without causing a full page reload.
+      */}
+      <nav style={{ marginBottom: '20px' }}>
+        <Link to="/" style={{ marginRight: '15px' }}>
+          Home
+        </Link>
+        <Link to="/todo" style={{ marginRight: '15px' }}>
+          To-Do List
+        </Link>
+        <Link to="/searchable">
+          Searchable List
+        </Link>
+      </nav>
 
-      {/* Section demonstrating a simple component that just renders "Hello World!" */}
-      <section>
-        <h2>Hello World Component</h2>
-        {/* This will display a basic "Hello World!" message from HelloWorld.js */}
-        <HelloWorld />
-      </section>
-      <hr />
+      {/* 
+        <Routes> defines all the valid routes in the app.
+        <Route path='...' element={<Component />} /> maps a path to a component.
+      */}
+      <Routes>
+        {/* Route for the original content (HelloWorld, Greeting, Counter) */}
+        <Route path="/" element={<Home />} />
 
-      {/* Section demonstrating passing data to components via props */}
-      <section>
-        <h2>Props Demonstration (Greeting)</h2>
-        {/* Greeting receives a 'name' prop, which it uses to personalize the greeting */}
-        <Greeting name="Alice" />
-        <Greeting name="Bob" />
-      </section>
-      <hr />
+        {/* Route for the Dynamic To-Do List */}
+        <Route path="/todo" element={<TodoPage />} />
 
-      {/* Section demonstrating the use of state within a component (the Counter) */}
-      <section>
-        <h2>State Demonstration (Counter)</h2>
-        {/* Counter shows how to track and update state (in this case, a number) over time */}
-        <Counter />
-      </section>
-    </div>
+        {/* Route for the Searchable List */}
+        <Route path="/searchable" element={<SearchablePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
 export default App;
+
