@@ -1,6 +1,10 @@
 # My React Learning App
 
-A simple React application designed as a learning tool to help you understand fundamental React concepts. This application demonstrates basic usage of JSX, functional components, props, and state management in React, starting from a "Hello World" foundation.
+A React application demonstrating fundamental React concepts—**Hello World**, **props**, **state**, **client-side routing**, **testing**, and multiple features:
+
+1. **Dynamic To-Do List** (add, remove, filter tasks)  
+2. **Searchable List** (real-time filtering & highlighting)  
+3. **Simple Theme Toggle** (light/dark mode)
 
 ## Table of Contents
 
@@ -13,6 +17,7 @@ A simple React application designed as a learning tool to help you understand fu
 - [Building for Production](#building-for-production)
 - [Project Structure](#project-structure)
 - [Key Concepts Demonstrated](#key-concepts-demonstrated)
+- [Theme Toggle Details](#theme-toggle-details)
 - [Browser Compatibility](#browser-compatibility)
 - [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
@@ -23,6 +28,8 @@ A simple React application designed as a learning tool to help you understand fu
 
 This refactored version uses **React Router** to keep everything in a single-page web app. Instead of multiple HTML files, users navigate between routes (`/`, `/todo`, `/searchable`) to access different features and demonstrations. This approach is more aligned with modern React best practices and provides a more seamless user experience.
 
+Including a new **Simple Theme Toggle** feature that allows users to switch between Light and Dark mode. The entire application updates its appearance when the theme changes.
+
 
 ## Features
 
@@ -32,6 +39,7 @@ This refactored version uses **React Router** to keep everything in a single-pag
 - **Clear Documentation**: Easy-to-follow instructions for setup, running, and testing the app locally.
 - **Comprehensive Tests**: Included unit tests ensure components work as expected and maintain code quality.
 - **Modular Architecture**: The codebase is organized into separate files and folders for clarity and maintainability.
+6. **Theme Toggle (Global State)**: Switch between light and dark theme for the entire app.
 
 ## Prerequisites
 
@@ -137,12 +145,15 @@ my-react-learning-app/
 │  │  ├─ Greeting.js
 │  │  ├─ Counter.js
 │  │  ├─ TodoList.js
-│  │  └─ SearchableList.js 
+│  │  ├─ SearchableList.js
+│  │  └─ ToggleThemeButton.js
+│  ├─ context/
+│  │  └─ ThemeContext.js
 │  ├─ pages/
 │  │  ├─ Home.js
 │  │  ├─ TodoPage.js
 │  │  └─ SearchablePage.js
-│  ├─ App.js 
+│  ├─ App.js
 │  ├─ index.js 
 │  ├─ App.test.js
 │  ├─ setupTests.js
@@ -150,10 +161,12 @@ my-react-learning-app/
 │     ├─ Greeting.test.js
 │     ├─ Counter.test.js
 │     ├─ TodoList.test.js
-│     └─ SearchableList.test.js
+│     ├─ SearchableList.test.js
+│     └─ ToggleThemeButton.test.js
 ├─ jest.config.js
 ├─ package.json
 └─ README.md
+
 
 ```
 
@@ -162,11 +175,18 @@ my-react-learning-app/
 - **Single-Page Application** structure using **React Router**
 - **JSX**: Learn how to write markup directly in JavaScript files.
 - **Functional Components**: Understand the simplest way to create components in React.
+- **Light/Dark Mode**: Dynamic styling based on user preference.
 - **Props**: Explore how to pass data into components to make them reusable and flexible.
 - **State (useState Hook)**: Discover how to manage dynamic data within components.
 - **Conditional Rendering** and **Filtering** (To-Do List, Searchable List).
 - **Client-Side Navigation** without full page reloads.
 - **Testing**: Ensure quality and maintainability by using Jest and React Testing Library.
+
+## Theme Toggle Details
+- **Theme State**: Managed by ThemeProvider, defaulting to 'light'.
+- **toggleTheme**: Switches between 'light' and 'dark'.
+- **Global Styles**: .light-theme and .dark-theme classes in styles.css govern background and text colors.
+- **Dynamic Class**: In App.js, we conditionally apply light-theme or dark-theme to the wrapper <div>.
 
 ## Browser Compatability
 
